@@ -60,6 +60,12 @@ namespace Assets.Examples.Editor.BehaviorEditor.AST
                     array.Name = fieldName;
                     //array.ItemType = new CodeBody().GetBaseType();
                 }
+                else if (fieldType.Contains("string"))
+                {
+                    var stringType = new StringType("");
+                    stringType.Name = fieldName;
+                    baseType = stringType;
+                }
                 else
                 {
                     throw new NotImplementedException("");

@@ -19,6 +19,9 @@ function level:__init( ... )
 	-- }
 	---@field checkRole boolean
 	self.checkRole = false
+
+	---@field position string
+	self.position = ""
 end
 function level:Init( ... )
 	-- body

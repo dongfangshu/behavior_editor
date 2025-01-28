@@ -31,6 +31,12 @@ namespace Assets.Examples.Editor.BehaviorEditor
                     toggle.name = m.Name;
                     controlsContainer.Add(toggle);
                 }
+                else if (m is StringType stringType)
+                {
+                    TextField textField = new TextField();
+                    textField.name = m.Name;
+                    controlsContainer.Add(textField);
+                }
             }
 
             //var floatNode = nodeTarget as FloatNode;
