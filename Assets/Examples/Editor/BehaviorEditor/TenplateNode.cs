@@ -1,29 +1,22 @@
-﻿using Assets.Examples.Editor.BehaviorEditor.TypeSystem;
-using GraphProcessor;
-using System;
+﻿using GraphProcessor;
+using LuaAnalyzer;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Examples.Editor.BehaviorEditor
 {
-    [System.Serializable,NodeMenuItem("Custom/Tenplate")]
     internal class TenplateNode : BaseNode
     {
-        public List<BaseType> Member = new List<BaseType>();
         public LuaCode AST;
-        public override string name => AST?.className;
+        public override string name => AST?.ClassDesc +'(' + AST?.ClassName + ')';
 
         //public TenplateNode(string templatePath)
         //{
         //    AST = LuaAnalyzeHelper.Analyze(templatePath);
         //    Member.AddRange(AST.Variable);
         //}
-        public void Init(string templatePath)
+        public void Init(LuaCode code)
         {
-            AST = LuaAnalyzeHelper.Analyze(templatePath);
-            Member.AddRange(AST.Variable);
+            AST = code;
         }
     }
 }

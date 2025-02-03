@@ -1,4 +1,5 @@
 ﻿using GraphProcessor;
+using LuaAnalyzer;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,17 +29,12 @@ namespace Assets.Examples.Editor.BehaviorEditor
             tmpPos = position;
             evt.menu.AppendAction("添加模板节点", (e) => TemplateSelectionWindow.ShowWindow(AddTemplateBehaviorNode));
         }
-        private void AddTemplateBehaviorNode(string templatePath)
+        private void AddTemplateBehaviorNode(LuaCode luaCode)
         {
-            if (!string.IsNullOrEmpty(templatePath) && File.Exists(templatePath))
-            {
-                //var node = new TenplateNode();
-                //node.Init(templatePath);
-                var node = BaseNode.CreateFromType<TenplateNode>(tmpPos);
-                node.Init(templatePath);
-                AddNode(node);
-            }
-            
+            var node = BaseNode.CreateFromType<TenplateNode>(tmpPos);
+            node.Init(luaCode);
+            var nodeView = AddNode(node);
+            nodeView.style.width = 200;
         }
     }
 }

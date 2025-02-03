@@ -1,45 +1,49 @@
-﻿---@class TaskFightLevel
-local level = BaseClass("TaskFightLevel")
-function level:__init( ... )
+﻿---@class TaskFightLevel 战斗模板
+TaskFightLevel = BaseClass("TaskFightLevel")
+function TaskFightLevel:__init( ... )
 	-- body
 
-	---@field levelId number
+	---@field public levelId number 关卡id
 	self.levelId = 1003
 
-	-- ---@class MonsterInfo
-	-- ---@field entityId number
-	-- ---@field position_id string
-	-- ---@field position_name string
+	---@class MonsterInfo
+	---@field private Id number
+	---@field public entityId number
+	---@field public position_id string
+	---@field public position_name string
 
-	-- ---@field monsterLevel MonsterInfo[]
-	-- self.monsterLevel ={ 
-	-- 	{ Id = nil,entityId = 120121,position_id = "",position_name = ""},
-	-- 	{ Id = nil,entityId = 120121,position_id = "",position_name = ""}
+	---@field public monsterLevel MonsterInfo[]
+	self.monsterLevel ={ 
+		{ Id = nil,entityId = 120121,position_id = "",position_name = ""},
+		{ Id = nil,entityId = 120121,position_id = "",position_name = ""}
+	}
+	--
+	---@field　private checkRole boolean 获取角色信息1
+	self.checkRole1 = true
 
-	-- }
-	---@field checkRole boolean
-	self.checkRole = false
+	---@field　public checkRole boolean 获取角色信息2
+	self.checkRole2 = true
 
-	---@field position string
-	self.position = ""
+	---@field public position string 位置信息
+	self.position = "{"pos","10050005"}"
 end
-function level:Init( ... )
+function TaskFightLevel:Init( ... )
 	-- body
 end
-function level:LateInit( ... )
+function TaskFightLevel:LateInit( ... )
 	-- body
 end
-function level:Update( ... )
+function TaskFightLevel:Update( ... )
 	-- body
 end
-function level:Remove( ... )
+function TaskFightLevel:Remove( ... )
 	-- body
 end
-function level:__delete( ... )
+function TaskFightLevel:__delete( ... )
 	-- body
 end
 ---@function
-function level:GetEntity()
+function TaskFightLevel:GetEntity()
 	-- body
 end
 

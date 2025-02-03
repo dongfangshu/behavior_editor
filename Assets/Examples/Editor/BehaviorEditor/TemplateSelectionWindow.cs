@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using LuaAnalyzer;
+using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,13 @@ namespace Assets.Examples.Editor.BehaviorEditor
 {
     internal class TemplateSelectionWindow:OdinEditorWindow
     {
-        public static void ShowWindow(Action<string> confirmCallBack)
+        public static void ShowWindow(Action<LuaCode> confirmCallBack)
         {
             var window = GetWindow<TemplateSelectionWindow>();
             window.confirmCallBack = confirmCallBack;
             window.InitializeWindow();
         }
-        Action<string> confirmCallBack;
+        Action<LuaCode> confirmCallBack;
         [HideInInspector]
         public List<string> allBehavior = new List<string>();
         [HideInInspector]
@@ -59,7 +60,12 @@ namespace Assets.Examples.Editor.BehaviorEditor
             var index = allBehaviorName.IndexOf(selectedOption);
             if (index != -1)
             {
-                confirmCallBack?.Invoke(allBehavior[index]);
+                LuaCode luaCode = new LuaCode();
+                var context = File.ReadAllText(allBehavior[index]);
+                if (luaCode.TryParse(context))
+                {
+                    confirmCallBack?.Invoke(luaCode);
+                }
             }
             Close();
         }
